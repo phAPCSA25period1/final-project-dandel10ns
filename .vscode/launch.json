@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "App",
+      "request": "launch",
+      "mainClass": "App",
+      "projectName": "final-project-dandel10ns_9fcd9acb"
+    },
+    {
+      "type": "java",
       "name": "TransitBot",
       "request": "launch",
       "mainClass": "TransitBot",

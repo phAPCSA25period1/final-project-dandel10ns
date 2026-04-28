@@ -2,14 +2,14 @@ import java.util.Scanner;
 
 public class TransitBot {
     public static void main(String[] args) {
-        TransitBot bot = new TransitBot();
-        bot.setUpUser();
+        // TransitBot bot = new TransitBot();
+        // bot.setUpUser();
     }
 
-    //create scanner to get user input
+    // create scanner to get user input
     Scanner scan = new Scanner(System.in);
 
-    //create instance variables
+    // create instance variables
     User currentUser;
 
     /**
@@ -28,27 +28,27 @@ public class TransitBot {
         String name = scan.nextLine();
 
         //save user type
-        System.out.println("Are you a senior, vetren, student, or standard user? ");
+        System.out.println("Do you qualify for a discount today? (y/n)");
         int type = 0;
-        if (scan.nextLine().equals("standard")){
-            type = 0;
-        }
-        else if (scan.nextLine().equals("student")){
-            type = 1;
-        }
-        else if (scan.nextLine().equals("senior")){
-            type = 2;
-        }
-        else if (scan.nextLine().equals("vetren")){
-            type = 3;
+        if(scan.nextLine().equals("y")){
+            System.out.println("Are you a senior, veteran, student, or standard user? ");
+             if (scan.nextLine().equals("student")){
+                type = 1;
+             }
+            else if (scan.nextLine().equals("senior")){
+                type = 2;
+            }
+            else if (scan.nextLine().equals("veteran")){
+                type = 3;
+            }
         }
 
         //create new user
         currentUser = new User(name, type);
     }
 
-    public void runMenu(){
-        System.out.println();
-        System.out.println("")
-    }
+    // public void runMenu(){
+    // System.out.println();
+    // System.out.println("");
+    // }
 }
