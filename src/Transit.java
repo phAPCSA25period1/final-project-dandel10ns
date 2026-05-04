@@ -14,20 +14,25 @@ public class Transit {
     };
 
     //create a method to choose a destination
-    public String whereTo(){
+    public void whereTo(){
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("What trolley stop would you like to go to?");
-        int rowNew = lines.findStopRow(scan.nextLine());
-        int colNew = lines.findStopCol(scan.nextLine());
+        System.out.println("What stop are you going to?");
+        String destination = scan.nextLine();
+        int rowNew = findStopRow(destination);
+        int colNew = findStopCol(destination);
 
         System.out.println("What stop are you at right now?");
-        int row = lines.findStopRow(scan.nextLine());
-        int col = lines.findStopCol(scan.nextLine());
+        String place = scan.nextLine();
+        int row = findStopRow(place);
+        int col = findStopCol(place);
 
-        if(sameLine(row, rowNew)){
-            lines.whichLine(row);
-            System.out.println("Take the ")
+        if(sameLine(row, rowNew) && row != -1){
+            String lineName = whichLine(row);
+            System.out.println("Take the " + lineName);
+        }
+        else {
+            System.out.println("You may need to switch lines.");
         }
 
 
@@ -37,22 +42,24 @@ public class Transit {
     public int findStopRow(String stop){
         for (int row = 0; row < lines.length; row++){
             for (int col = 0; col < lines[0].length; col++){
-                if (line[row][col].equals(stop)){
+                if (lines[row][col].equals(stop)){
                     return row;
                 }
             }
         }
+        return -1;
     }
 
     //loops through lines array and returns index of trolley stop provided
     public int findStopCol(String stop){
         for (int row = 0; row < lines.length; row++){
             for (int col = 0; col < lines[0].length; col++){
-                if (line[row][col].equals(stop)){
+                if (lines[row][col].equals(stop)){
                     return col;
                 }
             }
         }
+        return 0;
     }
 
     //find if trolley must switch lines
@@ -70,12 +77,33 @@ public class Transit {
         else if (row == 1){
             return ("Copper Line");
         }
-        else if (row == 1){
+        else if (row == 2){
             return ("Green Line");
         }
-        else if (row == 1){
+        else if (row == 3){
             return ("Orange Line");
         }
+        return "Unknown Line";
     }
 
+    public String findRoute(String startStation, String endStation){
+        int startRow = findStopRow(startStation);
+        int stopRow = findStopCol(endStation);
+
+        if (startRow == stopRow){
+            String lineNames = whichLine(startRow);
+            System.out.println("Take the " + lineNames);
+        }
+        String transferStation = " ";
+        for (int i = 0; i < startRow; i++){
+            for (int j = 0; j < stopRow; j++){
+                if (lines[startRow][i].equals(lines[stopRow][j])){
+                    transferStation = lines[startRow][i];
+                    return ("\"Take \" + startLine + \" to \" + transferStation + \", then switch to \" + endLine")
+                }
+            }
+        }
+
+        return ("No route found")
+    }
 }
