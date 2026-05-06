@@ -13,7 +13,10 @@ public class Transit {
         {"El Cajon", "Grossmont", "La Mesa Blvd", "Lemon Grove Depot", "Euclid Avenue", "47th Street", "12th and Imperial", "City College", "Courthouse"}
     };
 
-    //create a method to choose a destination
+    /**
+     * Uses various methods and takes in user input to try to connect the user to which line they are traveling on.
+     * Prints out the train stations a user must transfer to to get to their stop.
+     */
     public void whereTo(){
         Scanner scan = new Scanner(System.in);
 
@@ -32,13 +35,18 @@ public class Transit {
             System.out.println("Take the " + lineName);
         }
         else {
-            System.out.println("You may need to switch lines.");
+            findRoute(destination, place);
         }
 
 
     }
 
-    //loops through lines array and returns index of trolley stop provided
+    /**
+     * Loops through the lines array of trolley stop and returns the index of the indicated trolley stop row.
+     *
+     * @param stop - String value of an actual trolley stop
+     * @return row index of the trolley stop the user is trying to get to
+     */
     public int findStopRow(String stop){
         for (int row = 0; row < lines.length; row++){
             for (int col = 0; col < lines[0].length; col++){
@@ -50,7 +58,12 @@ public class Transit {
         return -1;
     }
 
-    //loops through lines array and returns index of trolley stop provided
+    /**
+     * Loops through the lines array of trolley stop and returns the index of the indicated trolley stop column.
+     *
+     * @param stop - String value of an actual trolley stop
+     * @return col index of the trolley stop the user is trying to get to
+     */
     public int findStopCol(String stop){
         for (int row = 0; row < lines.length; row++){
             for (int col = 0; col < lines[0].length; col++){
@@ -62,7 +75,12 @@ public class Transit {
         return 0;
     }
 
-    //find if trolley must switch lines
+    /**
+     * Returns a boolean based on whether or not the two trolley stops are the same.
+     * @param row row index of the user's current destination
+     * @param rowNew row index of the stop the user is trying to get to
+     * @return boolean value of whether or not the two values are equal
+     */
     public boolean sameLine(int row, int rowNew) {
         if (row == rowNew){
             return true;
@@ -70,6 +88,11 @@ public class Transit {
         return false;
     }
 
+    /**
+     * Based on the row index, it returns the String value of each line so that the user knows where they are going.
+     * @param row row index of the trolley stop
+     * @return String value of the trolley line
+     */
     public String whichLine(int row){
         if (row == 0){
             return ("Blue Line");
@@ -86,7 +109,14 @@ public class Transit {
         return "Unknown Line";
     }
 
-    public String findRoute(String startStation, String endStation){
+    /**
+     * Gemini provided me with a starting psuedo code to base the algorithm off of.
+     *
+     * Uses the row indexs to decide if the user is 
+     * @param startStation
+     * @param endStation
+     */
+    public void findRoute(String startStation, String endStation){
         int startRow = findStopRow(startStation);
         int stopRow = findStopCol(endStation);
 
@@ -99,11 +129,11 @@ public class Transit {
             for (int j = 0; j < stopRow; j++){
                 if (lines[startRow][i].equals(lines[stopRow][j])){
                     transferStation = lines[startRow][i];
-                    return ("\"Take \" + startLine + \" to \" + transferStation + \", then switch to \" + endLine")
+                    System.out.println("Take " + startStation + " to " + transferStation + ", then switch to " + endStation);
                 }
             }
         }
 
-        return ("No route found")
+        System.out.println("No route found");
     }
 }

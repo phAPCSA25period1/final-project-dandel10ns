@@ -1,16 +1,23 @@
 public class Ticket {
     //initalize variables
-    int basePrice = 2.5;
-    int discount = .5;
+    double basePrice = 2.5;
+    double discount = .5;
+    double price;
     User userType;
 
+    //create constructor
+    public Ticket(double price){
+        ticketPrice(userType);
+        this.price = price;
+    }
+
     //create method to calculate ticket price
-    public int ticketPrice(User userType){
-        if (User userType.isDiscountEligble()){
-            return basePrice*discount;
+    public void ticketPrice(User userType){
+        if (userType.isDiscountEligible()){
+            price = basePrice*discount;
         }
         else {
-            return basePrice;
+            price = basePrice;
         }
     }
 }

@@ -2,8 +2,11 @@ import java.util.Scanner;
 
 public class TransitBot {
     public static void main(String[] args) {
-        // TransitBot bot = new TransitBot();
-        // bot.setUpUser();
+        TransitBot bot = new TransitBot();
+        bot.currentUser = bot.setUpUser();
+        ticketPrice(bot.currentUser.getUserType());
+
+        Tranist whereTo();
     }
 
     // create scanner to get user input
@@ -16,7 +19,7 @@ public class TransitBot {
      * Prints out welcome message and asks for user information to initalize where they are going
      * and who they are.
      */
-    public void setUpUser(){
+    public User setUpUser(){
         //create scanner
         Scanner scan = new Scanner(System.in);
 
@@ -45,10 +48,7 @@ public class TransitBot {
 
         //create new user
         currentUser = new User(name, type);
+        return currentUser;
     }
 
-    // public void runMenu(){
-    // System.out.println();
-    // System.out.println("");
-    // }
 }
