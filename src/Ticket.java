@@ -4,20 +4,24 @@ public class Ticket {
     double discount = .5;
     double price;
     User userType;
+    int numTickets;
 
     //create constructor
-    public Ticket(double price){
-        ticketPrice(userType);
-        this.price = price;
-    }
-
-    //create method to calculate ticket price
-    public void ticketPrice(User userType){
+    public Ticket(int numTickets){
+        this.numTickets = numTickets;
         if (userType.isDiscountEligible()){
-            price = basePrice*discount;
+            this.price = basePrice*discount*numTickets;
         }
         else {
-            price = basePrice;
+            this.price = basePrice*numTickets;
         }
+    }
+
+    /**
+     * Getter method that returns the user price.
+     * @return ticket price
+     */
+    public double getPrice(){
+        return price;
     }
 }

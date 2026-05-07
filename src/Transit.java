@@ -23,12 +23,10 @@ public class Transit {
         System.out.println("What stop are you going to?");
         String destination = scan.nextLine();
         int rowNew = findStopRow(destination);
-        int colNew = findStopCol(destination);
 
         System.out.println("What stop are you at right now?");
         String place = scan.nextLine();
         int row = findStopRow(place);
-        int col = findStopCol(place);
 
         if(sameLine(row, rowNew) && row != -1){
             String lineName = whichLine(row);
@@ -38,7 +36,7 @@ public class Transit {
             findRoute(destination, place);
         }
 
-
+        scan.close();
     }
 
     /**
@@ -112,7 +110,7 @@ public class Transit {
     /**
      * Gemini provided me with a starting psuedo code to base the algorithm off of.
      *
-     * Uses the row indexs to decide if the user is 
+     * Uses the row indexs to decide if the user is
      * @param startStation
      * @param endStation
      */
