@@ -2,16 +2,19 @@ import java.util.Scanner;
 
 public class Transit {
     //create a new array
-    String[][] lines = {
-        //Blue Line row 0
-        {"UTC", "Balboa Avenue", "Old Town", "Little Italy", "Courthouse", "City College", "12th and Imperial", "Barrio Logan", "San Ysidro"},
+    private String[][] lines;
+
+    public Transit(){
+        lines = new String[][]{
+            {"UTC", "Balboa Avenue", "Old Town", "Little Italy", "Courthouse", "City College", "12th and Imperial", "Barrio Logan", "San Ysidro"},
         //Copper Line row 1
         {"Santee", "Gillespie Field", "Arnele Avenue", "El Cajon", " ", " ", " ", " ", " ",},
         //Green Line row 2
         {"El Cajon", "Grossmont", "SDSU", "Stadium", "Mission Valley Center", "Old Town", "Little Italy", "Gaslamp Quarter", "12th and Imperial"},
         //Orange Line row 3
         {"El Cajon", "Grossmont", "La Mesa Blvd", "Lemon Grove Depot", "Euclid Avenue", "47th Street", "12th and Imperial", "City College", "Courthouse"}
-    };
+        };
+    }
 
     /**
      * Uses various methods and takes in user input to try to connect the user to which line they are traveling on.

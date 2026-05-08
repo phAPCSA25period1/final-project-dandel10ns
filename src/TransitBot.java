@@ -16,10 +16,15 @@ public class TransitBot {
         System.out.println();
         System.out.println("Would you like to buy a ticket? (y/n) ");
         int count = 0;
-        while (scan.nextLine().equals("y")){
+        Transit trip = new Transit();
+        String answer = scan.nextLine().trim();
+        while (answer.equals("y")){
             count++;
-            currentUser.Transit.whereTo();
+            trip.whereTo();
+            //create a transit constructor, no info
+            //initlize attribute in constructo
             System.out.println("Would you like to buy another ticket? (y/n) ");
+            answer = scan.nextLine().trim();
         }
 
         //final price calculation
@@ -40,10 +45,11 @@ public class TransitBot {
      *
      * @return User consturctor holding new user information of name and discount eligibility
      */
-    public User setUpUser(){
+    public static User setUpUser(){
         Scanner scan = new Scanner(System.in);
 
         System.out.println("What is your name? ");
+        String name = scan.nextLine();
 
         System.out.println("Do you qualify for a discount today? (y/n)");
         int type = 0;
@@ -61,7 +67,7 @@ public class TransitBot {
         }
 
         //create a new user constructor
-        User one = new User(scan.nextLine(), type);
+        User one = new User(name, type);
 
         //close the scanner
         scan.close();
